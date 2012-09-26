@@ -12,7 +12,7 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/bootstrap/css/b-juspay.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
 
     <!-- Le fav and touch icons -->
@@ -26,18 +26,18 @@
 
   <body>
 
-    <div class="navbar">
-      <div class="navbar-inner">
+    <div class="top-header" style="background-color: #eee;width: 100%;">
         <div class="container">
-          <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
-          <ul class="nav">
-            {% assign pages_list = site.pages %}
-            {% assign group = 'navigation' %}
-            {% include JB/pages_list %}
-          </ul>
+            <div class="row">
+                <div class="span12">
+                    <a href="/">
+                        <image src="{{ ASSET_PATH }}/images/logo.png"></image>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
+
 
     <div class="container">
 
