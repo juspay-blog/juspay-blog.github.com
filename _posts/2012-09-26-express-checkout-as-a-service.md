@@ -3,27 +3,75 @@ layout: post
 title: "Introducing Juspay's Express Checkout as a Service"
 description: "Express Checkout Service offered by Juspay"
 category: 
-tags: [checkout, payments]
+tags: [express checkout, online payments, e-commerce]
 ---
 {% include JB/setup %}
 
-![Card API](/assets/images/chn_rail_crh2.jpg)
+![Card API](http://upload.wikimedia.org/wikipedia/commons/thumb/5/51/CRH380A_leaving_Shanghai_Hongqiao.JPG/320px-CRH380A_leaving_Shanghai_Hongqiao.JPG)
 
-#### CRH2 High Speed Train
-The picture posted above is of the CRH2 high speed train model in China. The maximum speed of this train is 350 km/h. Such high speed trains are not just technology marvel. These are symbols of efficiency. 
+This is the picture of [CRH380A](http://en.wikipedia.org/wiki/China_Railways_CRH380A "CRH380A") high speed train in China. The cruise speed of this train is 350 km/h. Such high speed trains are not just technology marvel. These are symbols of efficiency. 
 
-Every country puts a lot of effort to ensure that her citizens are healthy so that they can be more efficient and productive. The major differentiator between developed rich country like Germany and emerging economy like India is the social security programme. A responsible Govt strives to ensure that her citizens are healthy and thereby become more productive and efficient. This contributes to the GDP and tax income for the Govt. 
+Every country puts a lot of effort to ensure that her citizens are literate and healthy. When people are healthy and smart, they are more productive and efficient. This in turn, makes a country prosperous. 
 
 Just like a country, every ecosystem focuses on ensuring that its sub-systems are efficient. A great country needs a great economy. A great economy needs an efficient financial system. This brings us to the payments infrastructure issue. Just like good roads are required for efficient travel, a great payments infrastructure is required for efficient functioning of online economy. 
   
 #### Express Checkout
   
-Express Checkout is our first step to bring in efficiency to the system. In a typical checkout system, there are 7 steps involved before the checkout process is completed. Express Checkout reduces this to __2 simple steps__. From our analysis, we have observed that the entire checkout process can be completed in less than 15 seconds. This keeps the entropy to an extreme minimum.
+Express Checkout is our first step to help increase the efficiency of online payment systems. In a typical online payments scenario, there are 7 steps involved before the checkout process is completed. Express Checkout reduces this to __2 simple steps__. From our analysis, we have also observed that express checkout takes __less than 15 seconds__ to complete a payment. 
 
-Redirection leads to dead ends. Express Checkout retains the customer on the checkout page until the completion of payment. This reduces the frustration level for the customer, should the payment operation fail, for whatever reasons technical/non-technical. This increases the satisfaction level of customers and reduces abandonment rates of shopping carts. A typical merchant faces about ~65% of shopping cart abandonment. Express Checkout helps improve the situation. An approximate estimate of business improvement can be found here - [https://merchant.juspay.in/gain/](https://merchant.juspay.in/gain/ "Shopping Cart Improvement").
+HTTP Redirection will inevitably lead to dead ends, although sporadically. On the contrary, Express Checkout retains the customer on the checkout page until the completion of payment. This reduces the frustration level for the customer, should the payment operation fail, for whatever reasons technical or non-technical. The net effect is that satisfaction levels of customers increase. A typical merchant faces about [65% of shopping cart abandonment](http://www.invesp.com/blog/cro/shopping-cart-abandonment-rate-statistics-infographic.html "65% of shopping cart abandonment"). Express Checkout helps improve the situation. An approximate estimate on how much a business can benefit from this solution can be found [here](https://merchant.juspay.in/gain/ "Shopping Cart Improvement").
+
+#### How it works
+
+Juspay will store credit card (or debit card) information of buyers on behalf of partner merchants. Card information is stored only after the customer provides his/her consent. Note that we are PCI Level 1 Compliant and are fully authorized to store card information. During the checkout process, the merchant can obtain from Juspay the tokenized card information (pertaining to the customer) after duly authenticating customer. Only CVV number is required at this point. Customer enters this 3 digit code and proceeds to 3D Secure step and subsequently completes payment. 
+
+The payment instruction is sent to bank, only from Juspay, but on behalf of the merchant. Thus, the money doesn't flow through Juspay but rather is routed directly to the merchant's account.
 
 #### Simple APIs
 
-Our foundation APIs are completely HTTP based. We have consciously designed the APIs to be very minimalistic. 
+Our foundation APIs are completely HTTP based. We have consciously designed the APIs to be very minimalistic. These APIs accept regular HTTP payload (form encoded) and talk back in JSON. Listed below are our APIs to add a card and list cards pertaining to customer.
 
-![Card API](/assets/images/card-api.png)
+<pre class="prettyprint linenums lang-html">
+curl https://api.juspay.in/card/add \
+    -u 880E8EC5B9CA4450BD37ABB6E3CB2FED: \
+    -d "customer_id=sindbad" \
+    -d "customer_email=customer@mail.com" \
+    -d "card_number=4111111111111111" \
+    -d "card_exp_year=2015" \
+    -d "card_exp_month=07" \
+    -d "name_on_card=Sindbad" \
+
+curl https://api.juspay.in/card/list \
+    -u 880E8EC5B9CA4450BD37ABB6E3CB2FED: \
+    -d "customer_id=sindbad" \
+
+</pre>
+
+Merchants are free to design the credit card form in whichever manner they prefer. Our integration script is as small as that of Google Analytics! 
+
+<pre class="prettyprint linenums lang-html">&lt;script type="text/javascript" 
+    src="https://api.juspay.in/pay.js"&gt;&lt;/script&gt;
+
+// The payment form goes here.
+&lt;script type="text/javascript"&gt;
+    Juspay.Setup({
+        payment_form: "#payment_form",
+        success_handler: function(status) {},
+        error_handler: function(error_code, error_message, bank_error_code, bank_error_message, gateway_id) {}
+    })
+&lt;/script&gt;
+</pre>
+
+These are few examples. Our entire system is developed keeping simplicity as the foremost principle. From our past experience we have seen that simple things always have the capability to scale very nicely. Although we presently do not operate at a very large scale, we have tested the capabilities of our systems to scale without sacrificing throughput. 
+
+#### Inspiration
+
+A great amount of our design and philosophy is inspired from Amazon, Cleartrip, Square, Stripe and Flipkart. We are proud to stand on the shoulders of these giants. Our mission is to simplify online payments in India. We sincerely hope and believe that we would be able to help the ecosystem move forward. 
+
+#### Who can use it
+
+Express Checkout can only work in a trusted environment. So we recommend this solution only for merchants who have brand recognition and enjoy a certain level of customer trust. Merchants serving niche categories with significant number of repeat customers can also benefit from this solution.
+
+Upcoming merchants are encouraged to try our [Inline Checkout](https://merchant.juspay.in/merchant/inline-checkout-demo "Inline Checkout") solution. This product has all the benefits minus card storage. 
+
+For any queries, reach out to us by shooting a mail to [info@juspay.in](mailto:info@juspay.in). Please also follow us at [@juspay](http://twitter.com/juspay) for interesting updates. 
