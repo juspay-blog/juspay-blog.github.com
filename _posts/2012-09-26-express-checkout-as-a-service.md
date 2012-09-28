@@ -7,9 +7,9 @@ tags: [express checkout, online payments, e-commerce]
 ---
 {% include JB/setup %}
 
-![Card API](http://upload.wikimedia.org/wikipedia/commons/thumb/5/51/CRH380A_leaving_Shanghai_Hongqiao.JPG/320px-CRH380A_leaving_Shanghai_Hongqiao.JPG)
+![Express Checkout](/assets/images/chn_rail_crh2.jpg)
 
-This is the picture of [CRH380A](http://en.wikipedia.org/wiki/China_Railways_CRH380A "CRH380A") high speed train in China. The cruise speed of this train is 350 km/h. Such high speed trains are not just technology marvel. These are symbols of efficiency. 
+This is the picture of [CRH2](http://en.wikipedia.org/wiki/China_Railways_CRH2 "CRH2") high speed train in China. The maximum speed of this train is a whopping 350 km/h. Such high speed trains are not just technology marvel. These are symbols of efficiency. 
 
 Every country puts a lot of effort to ensure that her citizens are literate and healthy. When people are healthy and smart, they are more productive and efficient. This in turn, makes a country prosperous. 
 
@@ -23,23 +23,26 @@ HTTP Redirection will inevitably lead to dead ends, although sporadically. On th
 
 #### How it works
 
-Juspay will store credit card (or debit card) information of buyers on behalf of partner merchants. Card information is stored only after the customer provides his/her consent. Note that we are PCI Level 1 Compliant and are fully authorized to store card information. During the checkout process, the merchant can obtain from Juspay the tokenized card information (pertaining to the customer) after duly authenticating customer. Only CVV number is required at this point. Customer enters this 3 digit code and proceeds to 3D Secure step and subsequently completes payment. 
+Juspay will store credit card (or debit card) information of buyers on behalf of partner merchants. Card information is stored only after the customer provides his/her consent. Note that we are PCI Level 1 Compliant and are fully authorized to store card information. During the checkout process, the merchant,  after duly authenticating customer, can obtain the tokenized card information of customer from Juspay through our simple APIs. Only CVV number is required from the customer at this point. Customer enters this 3 digit code and proceeds to 3D Secure step and subsequently completes payment. 
 
-The payment instruction is sent to bank, only from Juspay, but on behalf of the merchant. Thus, the money doesn't flow through Juspay but rather is routed directly to the merchant's account.
+The payment instruction is sent to bank from Juspay's secure infrastructure, but on behalf of the merchant. Thus, the money doesn't flow through Juspay but rather is routed directly to the merchant's account.
 
 #### Simple APIs
 
-Our foundation APIs are completely HTTP based. We have consciously designed the APIs to be very minimalistic. These APIs accept regular HTTP payload (form encoded) and talk back in JSON. Listed below are our APIs to add a card and list cards pertaining to customer.
+Our foundation APIs are completely HTTP based. We have consciously designed the APIs to be very minimalistic. These APIs accept regular HTTP payload (form-url-encoded) and talk back in JSON. Listed below are our APIs to create an order and list cards pertaining to customer.
 
 <pre class="prettyprint linenums lang-html">
-curl https://api.juspay.in/card/add \
+
+# Create an order
+
+curl https://api.juspay.in/init_order \
     -u 880E8EC5B9CA4450BD37ABB6E3CB2FED: \
-    -d "customer_id=sindbad" \
+    -d "amount=400.00" \
+    -d "order_id=testuser3_ord_110011" \
+    -d "customer_id=testuser3_user_101" \
     -d "customer_email=customer@mail.com" \
-    -d "card_number=4111111111111111" \
-    -d "card_exp_year=2015" \
-    -d "card_exp_month=07" \
-    -d "name_on_card=Sindbad" \
+    
+# List cards pertaining to a customer
 
 curl https://api.juspay.in/card/list \
     -u 880E8EC5B9CA4450BD37ABB6E3CB2FED: \
