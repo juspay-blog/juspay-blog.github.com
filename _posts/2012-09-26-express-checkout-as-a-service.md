@@ -16,14 +16,23 @@ Every country puts a lot of effort to ensure that her citizens are literate and 
 Just like a country, every ecosystem focuses on ensuring that its sub-systems are efficient. A great country needs a great economy. A great economy needs an efficient financial system. This brings us to the payments infrastructure issue. Just like good roads are required for efficient travel, a great payments infrastructure is required for efficient functioning of online economy. 
   
 #### Express Checkout
-  
-Express Checkout is our first step to help increase the efficiency of online payment systems. In a typical online payments scenario, there are 7 steps involved before the checkout process is completed. Express Checkout reduces this to __2 simple steps__. From our analysis, we have also observed that express checkout takes __less than 15 seconds__ to complete a payment. 
 
-HTTP Redirection will inevitably lead to dead ends, although sporadically. On the contrary, Express Checkout retains the customer on the checkout page until the completion of payment. This reduces the frustration level for the customer, should the payment operation fail, for whatever reasons technical or non-technical. The net effect is that satisfaction levels of customers increase. A typical merchant faces about [65% of shopping cart abandonment](http://www.invesp.com/blog/cro/shopping-cart-abandonment-rate-statistics-infographic.html "65% of shopping cart abandonment"). Express Checkout helps improve the situation. An approximate estimate on how much a business can benefit from this solution can be found [here](https://merchant.juspay.in/gain/ "Shopping Cart Improvement").
+![Express Checkout Form](/assets/images/express-checkout-form.png)
+  
+This is our first step to help increase the efficiency of online payment systems. In a typical online payments scenario, there are 7 steps involved before the checkout process is completed. Express Checkout reduces this to __2 simple steps__. From our analysis, we have also observed that express checkout takes __less than 15 seconds__ to complete a payment. 
+
+HTTP Redirection based workflow will inevitably lead to dead ends at times. On the contrary, Express Checkout retains the customer on the checkout page until the completion of payment. The complicated redirection is offloaded to a separate window.This reduces the frustration level for the customer, should the payment operation fail, for whatever reasons technical or non-technical. The net effect is that satisfaction levels of customers increase. 
+
+A typical merchant faces about [65% of shopping cart abandonment](http://www.invesp.com/blog/cro/shopping-cart-abandonment-rate-statistics-infographic.html "65% of shopping cart abandonment"). Express Checkout helps improve the situation. An approximate estimate on how much a business can benefit from this solution can be found [here](https://merchant.juspay.in/gain/ "Shopping Cart Improvement").
+
 
 #### How it works
 
-Juspay will store credit card (or debit card) information of buyers on behalf of partner merchants. Card information is stored only after the customer provides his/her consent. Note that we are PCI Level 1 Compliant and are fully authorized to store card information. During the checkout process, the merchant,  after duly authenticating customer, can obtain the tokenized card information of customer from Juspay through our simple APIs. Only CVV number is required from the customer at this point. Customer enters this 3 digit code and proceeds to 3D Secure step and subsequently completes payment. 
+Juspay will store credit card (or debit card) information of buyers on behalf of partner merchants. Card information is stored only after the customer provides his/her consent. Note that we are PCI Level 1 Compliant and are fully authorized to store card information. 
+
+![Inline Checkout Form](/assets/images/inline-checkout-form.png)
+
+The first time checkout will be a regular one, as shown above. During the subsequent purchase, the merchant can obtain the tokenized card information of customer from Juspay through our simple APIs. Only CVV number is required from the customer at this point. Customer enters this 3 digit code and proceeds to 3D Secure step and subsequently completes payment. 
 
 The payment instruction is sent to bank from Juspay's secure infrastructure, but on behalf of the merchant. Thus, the money doesn't flow through Juspay but rather is routed directly to the merchant's account.
 
@@ -75,6 +84,6 @@ A great amount of our design and philosophy is inspired from Amazon, Cleartrip, 
 
 Express Checkout can only work in a trusted environment. So we recommend this solution only for merchants who have brand recognition and enjoy a certain level of customer trust. Merchants serving niche categories with significant number of repeat customers can also benefit from this solution.
 
-Upcoming merchants are encouraged to try our [Inline Checkout](https://merchant.juspay.in/merchant/inline-checkout-demo "Inline Checkout") solution. This product has all the benefits minus card storage. 
+Upcoming merchants are encouraged to try our [Inline Checkout](https://merchant.juspay.in/merchant/inline-checkout-demo "Inline Checkout") solution. This product has all the benefits but for card storage. 
 
 For any queries, reach out to us by shooting a mail to [info@juspay.in](mailto:info@juspay.in). Please also follow us at [@juspay](http://twitter.com/juspay) for interesting updates. 
