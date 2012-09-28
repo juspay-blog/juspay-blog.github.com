@@ -17,6 +17,9 @@ tagline:
         <div class="main_section">
             {{ post.content }}
         </div>
+        <div id="comments-link">
+            <a href="{{ post.url }}#comments">Comments</a>
+        </div>
     </div>
 </div>
 
