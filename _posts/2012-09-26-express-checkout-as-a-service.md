@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Introducing Juspay's Express Checkout as a Service"
+title: "Express Checkout as a Service"
 description: "Express Checkout Service offered by Juspay"
 category: 
 tags: [express checkout, online payments, e-commerce]
@@ -38,7 +38,7 @@ The payment instruction is sent to bank from Juspay's secure infrastructure, but
 
 #### Simple APIs
 
-Our foundation APIs are completely HTTP based. We have consciously designed the APIs to be very minimalistic. These APIs accept regular HTTP payload (form-url-encoded) and talk back in JSON. Listed below are our APIs to create an order and list cards pertaining to customer.
+Our foundation APIs are completely HTTP based. We have consciously designed the APIs to be very minimalistic. These APIs accept regular HTTP payload (form-url-encoded) and talk back in JSON.
 
 <pre class="prettyprint linenums lang-html">
 
